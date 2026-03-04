@@ -447,10 +447,10 @@ function handleKeyboardShortcuts(e) {
         return;
     }
     
-    if (e.key === ' ') {
+    /** if (e.key === ' ') {
         e.preventDefault();
         togglePanMode();
-    }
+    } **/
     
     else if (e.ctrlKey && (e.key === '+' || e.key === '=')) {
         e.preventDefault();
