@@ -59,7 +59,43 @@
             </div>
         </div>
 
-        <div class="results-container" id="resultsContainer" style="display: none;">
+        <div class="results-container" id="resultsContainer">
+            <div class="result-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Mermaid Diagram</span>
+                    </div>
+                    <div class="panel-controls">
+                        <div class="panel-status">
+                            <div class="status-dot active" id="mermaidStatus"></div>
+                            <span>Generated</span>
+                        </div>
+                        <button class="control-btn" id="toggleMermaidBtn" title="Toggle Diagram/Code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button class="control-btn" id="copyMermaidBtn" title="Copy Mermaid Code">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <div style="width: 1px; height: 24px; background: var(--border); margin: 0 4px;"></div>
+                        <button class="control-btn" id="closeResultsBtn" title="Close Panel">
+                            <i class="fas fa-times" style="font-size: 18px;"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <div class="empty-state" id="mermaidEmpty" style="display: none;">
+                        <i class="fas fa-diagram-project"></i>
+                        <h3>Mermaid Diagram</h3>
+                        <p>Workflow visualization will appear here</p>
+                    </div>
+                    <div id="mermaidContainer" style="display: flex;">
+                        <div id="mermaidDiagram"></div>
+                    </div>
+                    <pre class="code-view" id="mermaidCodeContainer" style="display: none;"><code class="language-bash" id="mermaidCodeBlock"></code></pre>
+                </div>
+            </div>
+
             <div class="result-panel">
                 <div class="panel-header">
                     <div class="panel-title">
@@ -83,38 +119,6 @@
                         <p>Generated code will appear here</p>
                     </div>
                     <pre class="code-view" id="nextflowCodeContainer" style="display: block;"><code class="language-groovy" id="nextflowCodeBlock"></code></pre>
-                </div>
-            </div>
-
-            <div class="result-panel">
-                <div class="panel-header">
-                    <div class="panel-title">
-                        <i class="fas fa-project-diagram"></i>
-                        <span>Mermaid Diagram</span>
-                    </div>
-                    <div class="panel-controls">
-                        <div class="panel-status">
-                            <div class="status-dot active" id="mermaidStatus"></div>
-                            <span>Generated</span>
-                        </div>
-                        <button class="control-btn" id="toggleMermaidBtn" title="Toggle Diagram/Code">
-                            <i class="fas fa-code"></i>
-                        </button>
-                        <button class="control-btn" id="copyMermaidBtn" title="Copy Mermaid Code">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="panel-content">
-                    <div class="empty-state" id="mermaidEmpty" style="display: none;">
-                        <i class="fas fa-diagram-project"></i>
-                        <h3>Mermaid Diagram</h3>
-                        <p>Workflow visualization will appear here</p>
-                    </div>
-                    <div id="mermaidContainer" style="display: flex;">
-                        <div id="mermaidDiagram"></div>
-                    </div>
-                    <pre class="code-view" id="mermaidCodeContainer" style="display: none;"><code class="language-bash" id="mermaidCodeBlock"></code></pre>
                 </div>
             </div>
         </div>

@@ -14,9 +14,16 @@ const sessionId = generateSessionId();
 
 const resultsContainer = document.getElementById('resultsContainer');
 const chatSection = document.getElementById('chatSection');
+const closeResultsBtn = document.getElementById('closeResultsBtn');
 
 // Initialize UI Modules
 const resultsUi = initResultsUi();
+
+if (closeResultsBtn) {
+    closeResultsBtn.addEventListener('click', () => {
+        resultsContainer.classList.remove('open');
+    });
+}
 
 const handleSendMessage = async (text) => {
     chatUi.showTypingIndicator();
@@ -36,11 +43,12 @@ const handleSendMessage = async (text) => {
             chatUi.appendAiMessage(response.reply);
             chatUi.setStatus('active', 'Ready');
         } else if (response.status === 'APPROVED') {
-            chatUi.appendAiMessage(response.reply || 'I am generating your pipeline now...');
-            
-            // Reveal the results pane side-by-side
-            chatSection.classList.remove('full-width');
-            resultsContainer.style.display = 'grid';
+            chatUi.appendAiMessage(response.reply || 'Pipeline generated successfully!', {
+                text: 'Open Pipeline Result',
+                onClick: () => {
+                    resultsContainer.classList.add('open');
+                }
+            });
             
             // Render Nextflow and Mermaid
             resultsUi.renderNextflow(response.nextflow_code);

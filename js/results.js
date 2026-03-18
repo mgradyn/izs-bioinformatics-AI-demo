@@ -75,7 +75,7 @@ export function initResultsUi() {
         if (!code) return;
         nextflowEmpty.style.display = 'none';
         
-        const beautified = customFormat(code);
+        const beautified = customFormat(code, true); // true = skip smart indent for nextflow
         rawNextflowData = beautified;
         nextflowCodeBlock.textContent = beautified;
         nextflowCodeContainer.style.display = 'block';
@@ -212,9 +212,16 @@ async function copyToClipboard(text, btnElement) {
     } catch(err) { console.error(err); }
 }
 
-function customFormat(code) {
+function customFormat(code, skipIndent = false) {
     if (!code) return '';
-    const lines = code.trim().split('\\n');
+    // Handle literal \\n that might come from stringified JSON
+    let rawCode = code.replace(/\\n/g, '\n');
+    
+    if (skipIndent) {
+        return rawCode;
+    }
+    
+    const lines = rawCode.trim().split('\n');
     let indentLevel = 0;
     const formatted = [];
     for (let line of lines) {
@@ -226,5 +233,5 @@ function customFormat(code) {
             indentLevel++;
         }
     }
-    return formatted.join('\\n');
+    return formatted.join('\n');
 }

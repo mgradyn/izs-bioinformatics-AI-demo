@@ -30,6 +30,7 @@ body {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 /* Chat Section */
@@ -269,21 +270,33 @@ body {
 
 /* Results Container */
 .results-container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* True side-by-side for desktop */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-results);
-    overflow: hidden;
+    z-index: 1000;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.results-container.open {
+    transform: translateX(0);
 }
 
 .result-panel {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    border-right: 1px solid var(--border);
+    flex: 1;
+    min-height: 0; /* important for flex items to scroll */
+    border-bottom: 1px solid var(--border);
     background: #ffffff;
 }
-.result-panel:last-child { border-right: none; }
+.result-panel:last-child { border-bottom: none; }
 
 .panel-header {
     display: flex;
@@ -470,57 +483,40 @@ body {
 /* Responsive Scaling for Laptops / Mobile */
 @media (max-width: 1200px) {
     body {
-        height: auto;
-        overflow: visible;
+        height: 100vh;
+        overflow: hidden;
     }
     .main-container {
         flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        overflow: visible;
+        height: 100vh;
+        overflow: hidden;
     }
     .chat-section {
         width: 100%;
-        min-width: 0; /* Fixes horizontal scroll break on mobile */
+        min-width: 0;
         max-width: 100%;
-        height: 60vh;
+        height: 100vh;
         border-right: none;
-        border-bottom: 1px solid var(--border);
         flex-shrink: 0;
-    }
-    .chat-section.full-width {
-        height: 100dvh; /* Anchors exactly to screen bottom */
     }
     .results-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        height: 120vh;
-        flex-shrink: 0;
+        width: 100vw;
+        left: 0;
+        top: 0;
+        right: auto;
+        transform: translateY(100%);
     }
-    .result-panel {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+    .results-container.open {
+        transform: translateY(0);
     }
 }
 
 @media (max-width: 768px) {
-    .chat-section {
-        height: 70vh; /* Better proportion for small phones */
-    }
-    .chat-section.full-width {
-        height: 100dvh; /* Anchors exactly to screen bottom */
-    }
     .chat-header, .chat-history, .chat-input-area {
         padding: 16px 20px;
     }
     .chat-bubble {
         max-width: 95%;
         font-size: 14px;
-    }
-    .results-container {
-        height: auto;
-    }
-    .result-panel {
-        height: 80vh; /* Large enough to read code or view diagram */
     }
 }

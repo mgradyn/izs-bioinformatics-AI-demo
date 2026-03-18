@@ -59,15 +59,28 @@ export function initChatUi(onSendMessage) {
         scrollToBottom();
     }
 
-    function appendAiMessage(text) {
+    function appendAiMessage(text, buttonConfig = null) {
         const bubble = document.createElement('div');
         bubble.className = 'chat-bubble ai';
+        
         
         if (typeof marked !== 'undefined') {
             bubble.innerHTML = marked.parse(text);
         } else {
             bubble.textContent = text;
             bubble.style.whiteSpace = 'pre-wrap';
+        }
+        
+        if (buttonConfig) {
+            const btn = document.createElement('button');
+            btn.className = 'example-btn';
+            btn.innerHTML = `<i class="fas fa-external-link-alt"></i> ${buttonConfig.text}`;
+            btn.style.marginTop = '16px';
+            btn.style.display = 'inline-flex';
+            btn.style.alignItems = 'center';
+            btn.style.gap = '8px';
+            btn.onclick = buttonConfig.onClick;
+            bubble.appendChild(btn);
         }
         
         chatHistory.appendChild(bubble);
