@@ -103,6 +103,42 @@ body {
     transform: translateY(-1px);
 }
 
+.action-badge {
+    background: var(--primary-light);
+    border: 1px solid rgba(1, 103, 156, 0.2);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-badge:hover {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(1, 103, 156, 0.2);
+    transform: translateY(-1px);
+}
+
+.action-badge.reset {
+    color: var(--text-muted);
+    border-color: var(--border);
+    background: #ffffff;
+}
+
+.action-badge.reset:hover {
+    color: var(--error);
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
 /* Chat History */
 .chat-history {
     flex: 1;

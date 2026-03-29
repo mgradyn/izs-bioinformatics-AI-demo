@@ -7,6 +7,8 @@ export function initChatUi(onSendMessage) {
     const statusDot = document.getElementById('statusDot');
     const statusText = document.getElementById('statusText');
     const exampleBtns = document.querySelectorAll('.example-btn');
+    const quickYesBtn = document.getElementById('quickYesBtn');
+    const resetChatBtn = document.getElementById('resetChatBtn');
 
     // Initialization
     sendMessageBtn.disabled = true;
@@ -50,6 +52,23 @@ export function initChatUi(onSendMessage) {
             userInput.dispatchEvent(new Event('input'));
         });
     });
+
+    // Quick Actions
+    if (quickYesBtn) {
+        quickYesBtn.addEventListener('click', () => {
+            userInput.value = 'approved';
+            submitMessage();
+        });
+    }
+
+    // Reset Context
+    if (resetChatBtn) {
+        resetChatBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset the chat context? This will refresh the page.')) {
+                window.location.reload();
+            }
+        });
+    }
 
     function appendUserMessage(text) {
         const bubble = document.createElement('div');

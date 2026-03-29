@@ -41,6 +41,13 @@
             </div>
 
             <div class="chat-input-area">
+                <div class="quick-actions" id="quickActions" style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                    <button class="action-badge" id="quickYesBtn"><i class="fas fa-check"></i> Yes/Approved</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button class="action-badge reset" id="resetChatBtn" title="Reset Context">
+                        <i class="fas fa-sync-alt"></i> Reset
+                    </button>
+                </div>
                 <div class="input-wrapper">
                     <textarea id="userInput" placeholder="Message your Bioinformatics Pipeline Assistant..."></textarea>
                     <button id="sendMessageBtn">
