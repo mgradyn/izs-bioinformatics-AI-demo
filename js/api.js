@@ -5,7 +5,7 @@ export async function sendChatMessage(sessionId, message) {
             message: message
         };
 
-        const response = await fetch('http://izs-llm.me:8081/chat', {
+        const response = await fetch('https://altizs.app/chat', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
