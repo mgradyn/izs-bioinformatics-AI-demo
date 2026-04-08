@@ -52,7 +52,7 @@ const handleSendMessage = async (text) => {
             
             // Render Nextflow and Mermaid
             resultsUi.renderNextflow(response.nextflow_code);
-            resultsUi.renderMermaid(response.mermaid_code);
+            resultsUi.renderMermaid(response.mermaid_deterministic || response.mermaid_code);
             
             chatUi.setStatus('active', 'Pipeline Generated');
         }
